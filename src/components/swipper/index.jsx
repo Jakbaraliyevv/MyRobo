@@ -193,7 +193,8 @@ const SwiperComponent = () => {
               <h1 className="text-3xl md:text-5xl font-bold mb-6">
                 <span className="text-blue-600">Flutter</span> dasturlash
                 <br />
-                tilini <span  className="text-blue-600">Bobur</span> bilan o'rganing
+                tilini <span className="text-blue-600">Bobur</span> bilan
+                o'rganing
               </h1>
 
               <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">

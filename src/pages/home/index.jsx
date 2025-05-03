@@ -1,5 +1,6 @@
 import React from "react";
 import SwiperComponent from "../../components/swipper";
+import SertificateComponents from "../../components/sertificate";
 // import SlayderKomponenti from "../../components/swipper";
 
 function Home() {
@@ -7,6 +8,7 @@ function Home() {
     <div>
       {/* <SlayderKomponenti /> */}
       <SwiperComponent />
+      <SertificateComponents />
     </div>
   );
 }
