@@ -369,6 +369,8 @@
 
 // export default KirishComponents;
 
+
+
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "antd";
@@ -404,7 +406,7 @@ function KirishComponents() {
   ];
 
   return (
-    <section className="w-[90%] m-auto mt-[60px] mb-[60px]">
+    <section className="w-[90%] m-auto mt-[60px]">
       <div className="flex items-center justify-center gap-[60px] max-[640px]:flex max-[640px]:flex-col max-[640px]:gap-[40px]">
         {cards.map((card, index) => (
           <div
