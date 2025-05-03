@@ -1,6 +1,7 @@
 import React from "react";
 import SwiperComponent from "../../components/swipper";
 import SertificateComponents from "../../components/sertificate";
+import KirishComponents from "../../components/kirish";
 // import SlayderKomponenti from "../../components/swipper";
 
 function Home() {
@@ -9,6 +10,7 @@ function Home() {
       {/* <SlayderKomponenti /> */}
       <SwiperComponent />
       <SertificateComponents />
+      <KirishComponents />
     </div>
   );
 }
