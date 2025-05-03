@@ -61,7 +61,7 @@ function SertificateComponents() {
               </svg>
             </div>
             <div className="w-[80%] flex flex-col gap-2">
-              <h1 className="text-[22px] font-medium text-[#000] max-[480px]:text-[19px] max-[768px]:font-bold">
+              <h1 className="text-[22px] font-medium text-[#000] max-[480px]:text-[19px] max-[768px]:font-medium">
                 IT kurslari
               </h1>
               <p className="text-gray-500 text-[17px] max-[768px]:text-[14px]">
@@ -93,7 +93,7 @@ function SertificateComponents() {
               </svg>
             </div>
             <div className="w-[80%] flex flex-col gap-2">
-              <h1 className="text-[22px] font-medium text-[#000] max-[480px]:text-[19px] max-[768px]:font-bold">
+              <h1 className="text-[22px] font-medium text-[#000] max-[480px]:text-[19px] max-[768px]:font-medium">
                 Mutaxassislik kurslari
               </h1>
               <p className="text-gray-500 text-[17px] max-[768px]:text-[14px]">
@@ -142,7 +142,7 @@ function SertificateComponents() {
               </svg>
             </div>
             <div className="w-[80%] flex flex-col gap-2">
-              <h1 className="text-[22px] font-medium text-[#000] max-[480px]:text-[19px] max-[768px]:font-bold">
+              <h1 className="text-[22px] font-medium text-[#000] max-[480px]:text-[19px] max-[768px]:font-medium">
                 Sertifikatlangan kurslar
               </h1>
               <p className="text-gray-500 text-[17px] max-[768px]:text-[14px]">
