@@ -17,7 +17,7 @@ const PremiumEducation = () => {
             <p className="text-xl  text-gray-600 font-medium text-center max-[618px]:text-[15px]">
               PREMIUM TA'LIM
             </p>
-            <h1 className=" text-3xl font-bold max-[768px]:text-1xl max-[618px]:text-xl max-[618px]:text-[17px]">
+            <h1 className=" text-3xl font-bold max-[768px]:text-1xl max-[618px]:text-xl max-[440px]:text-[17px]">
               Eng Zamonaviy-Elektron
               <span className="text-[#0a8ce4]"> Ta'lim Tajribasi</span>
             </h1>
