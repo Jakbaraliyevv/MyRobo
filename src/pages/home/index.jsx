@@ -4,6 +4,7 @@ import SertificateComponents from "../../components/sertificate";
 import KirishComponents from "../../components/kirish";
 import KursToifalariComponents from "../../components/kurs-toifalar";
 import PremiumEducation from "../../components/premium";
+import AnimatedStats from "../../components/animated";
 // import SlayderKomponenti from "../../components/swipper";
 
 function Home() {
@@ -15,6 +16,7 @@ function Home() {
       <KirishComponents />
       <KursToifalariComponents />
       <PremiumEducation />
+      <AnimatedStats />
     </div>
   );
 }
