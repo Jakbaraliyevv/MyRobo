@@ -17,7 +17,7 @@ function Home() {
       <SertificateComponents />
       <KirishComponents />
       <KursToifalariComponents />
-      <PremiumEducation />
+      <PremiumEducation />  
       <AnimatedStats />
       <TeamComponents />
       <IshtirockComponents />

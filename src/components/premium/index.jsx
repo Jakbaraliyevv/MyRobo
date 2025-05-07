@@ -10,102 +10,77 @@ const PremiumEducation = () => {
     "Global ijodiy hamjamiyat bilan bog'langan",
   ];
 
-  // Animatsiya variantlari
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
-  const leftSlideIn = {
-    hidden: { opacity: 0, x: -100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
-  };
-
-  const rightSlideIn = {
-    hidden: { opacity: 0, x: 100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
-  };
-
   return (
-    <section className="w-[90%] m-auto mt-[40px]">
-      <div className="w-full flex justify-between items-center max-[768px]:flex-col max-[768px]:gap-[30px]">
-        {/* Chap qism - Matnlar (chapdan kirib keladi) */}
+    <section className="w-[90%] mx-auto py-10 overflow-x-hidden">
+      <div className="flex flex-col md:flex-row gap-8 items-center">
+        {/* Text content - left side */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
-          variants={leftSlideIn}
-          className=""
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false, margin: "0px 0px -100px 0px" }}
+          className="w-full md:w-1/2 min-w-0"
         >
-          <motion.div
-            className="flex flex-col gap-6 max-[618px]:gap-3"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false }}
-          >
+          <div className="space-y-6">
             <motion.p
-              variants={itemVariants}
-              className="text-xl text-gray-600 font-medium text-center max-[618px]:text-[15px]"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: false }}
+              className="text-lg text-gray-600 font-medium text-center md:text-left"
             >
               PREMIUM TA'LIM
             </motion.p>
 
             <motion.h1
-              variants={itemVariants}
-              className="text-3xl font-bold max-[768px]:text-1xl max-[618px]:text-xl max-[440px]:text-[17px]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: false }}
+              className="text-2xl sm:text-3xl font-bold text-center md:text-left"
             >
               Eng Zamonaviy-Elektron
-              <span className="text-[#0a8ce4]"> Ta'lim Tajribasi</span>
+              <span className="text-blue-500"> Ta'lim Tajribasi</span>
             </motion.h1>
 
-            <motion.div className="space-y-2">
-              {text_data?.map((item, index) => (
+            <div className="space-y-3">
+              {text_data.map((item, index) => (
                 <motion.div
                   key={index}
-                  variants={itemVariants}
-                  className="transition-all duration-300 ease-in-out border-b border-gray-200/80 py-2 px-3 hover:bg-blue-50 hover:rounded-lg hover:border-blue-50 cursor-pointer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  viewport={{ once: false }}
+                  className="p-3 border-b border-gray-200 hover:bg-gray-50 hover:rounded-lg transition-all cursor-pointer"
                 >
-                  <p className="font-medium text-lg max-[618px]:text-[14px]">
-                    {item}
-                  </p>
+                  <p className="font-medium text-sm sm:text-base">{item}</p>
                 </motion.div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* O'ng qism - Rasm (o'ngdan kirib keladi) */}
+        {/* Image - right side */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
-          variants={rightSlideIn}
-          className=""
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false, margin: "0px 0px -100px 0px" }}
+          className="w-full md:w-1/2 flex justify-center min-w-0"
         >
-          <div className="opani_rasmi">
-            <motion.img
+          <motion.div
+            initial={{ scale: 0.95 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: false }}
+            className="w-full max-w-[380px] sm:max-w-[500px]"
+          >
+            <img
               src={opani_Rasmi}
               alt="Premium ta'lim tasviri"
-              className="w-[630px] h-auto rounded-lg"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              className="w-full h-auto rounded-lg shadow-md"
             />
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
