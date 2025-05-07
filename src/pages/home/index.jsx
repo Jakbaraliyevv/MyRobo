@@ -5,6 +5,7 @@ import KirishComponents from "../../components/kirish";
 import KursToifalariComponents from "../../components/kurs-toifalar";
 import PremiumEducation from "../../components/premium";
 import AnimatedStats from "../../components/animated";
+import TeamComponents from "../../components/team";
 // import SlayderKomponenti from "../../components/swipper";
 
 function Home() {
@@ -17,6 +18,7 @@ function Home() {
       <KursToifalariComponents />
       <PremiumEducation />
       <AnimatedStats />
+      <TeamComponents />
     </div>
   );
 }
