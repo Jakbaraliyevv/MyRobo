@@ -31,7 +31,7 @@ function SertificateComponents() {
 
   return (
     <motion.section
-      className="bg-[#f1f2f7] py-[30px] mt-[40px] bgnone"
+      className="bg-[#f1f2f7] py-[30px] mt-[20px] bgnone"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
