@@ -105,7 +105,7 @@ const AnimatedStats = () => {
           <div className="text-4xl font-bold text-blue-600 mb-2 max-[768px]:text-2xl max-[500px]:text-sm">
             {studentCount.toLocaleString()}
           </div>
-          <div className="text-gray-600 max-[600px]:text-[12px] max-[500px]:text-[6px]">
+          <div className="text-gray-600 max-[600px]:text-[12px] max-[500px]:text-[7px]">
             Talaba ro'yhatdan o'tdi
           </div>
           <div className="mt-4 h-2 bg-blue-100 rounded-full max-[500px]:h-1">
@@ -121,7 +121,7 @@ const AnimatedStats = () => {
           <div className="text-4xl font-bold text-green-600 mb-2 max-[768px]:text-2xl max-[500px]:text-sm">
             {completedClasses.toLocaleString()}
           </div>
-          <div className="text-gray-600 max-[600px]:text-[12px] max-[500px]:text-[6px]">
+          <div className="text-gray-600 max-[600px]:text-[12px] max-[500px]:text-[7px]">
             Sinf yo'qlamalari
           </div>
           <div className="mt-4 h-2 bg-green-100 rounded-full max-[500px]:h-1">
@@ -139,7 +139,7 @@ const AnimatedStats = () => {
           <div className="text-4xl font-bold text-purple-600 mb-2 max-[768px]:text-2xl max-[500px]:text-sm">
             {satisfactionRate.toFixed(1)}%
           </div>
-          <div className="text-gray-600 max-[600px]:text-[12px] max-[500px]:text-[6px]">
+          <div className="text-gray-600 max-[600px]:text-[12px] max-[500px]:text-[7px]">
             Qoniqish darajasi
           </div>
           <div className="mt-4 h-2 bg-purple-100 rounded-full max-[500px]:h-1">
@@ -157,7 +157,7 @@ const AnimatedStats = () => {
           <div className="text-4xl font-bold text-orange-600 mb-2 max-[768px]:text-2xl max-[500px]:text-sm ">
             {teacherCount.toLocaleString()}
           </div>
-          <div className="text-gray-600 max-[600px]:text-[12px] max-[500px]:text-[6px]">
+          <div className="text-gray-600 max-[600px]:text-[12px] max-[500px]:text-[7px]">
             Eng yaxshi o'qituvchilar
           </div>
           <div className="mt-4 h-2 bg-orange-100 rounded-full max-[500px]:h-1">
