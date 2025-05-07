@@ -78,7 +78,7 @@ const PremiumEducation = () => {
             <img
               src={opani_Rasmi}
               alt="Premium ta'lim tasviri"
-              className="w-full h-auto rounded-lg shadow-md"
+              className="w-full h-auto "
             />
           </motion.div>
         </motion.div>
