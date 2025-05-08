@@ -159,7 +159,10 @@ function Navbar() {
             <Button
               className="w-full h-[38px] hover:bg-[#40a9ff] hover:border-[#40a9ff] transition-colors"
               type="primary"
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                navigate("/login");
+              }}
             >
               Kirish
             </Button>
