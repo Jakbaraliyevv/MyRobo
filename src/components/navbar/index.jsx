@@ -1,13 +1,13 @@
 import { Button, Drawer } from "antd";
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo3.png";
 import { MenuOutlined } from "@ant-design/icons";
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
   const location = useLocation();
-
+  const navigate = useNavigate();
   const showDrawer = () => {
     setVisible(true);
   };
@@ -82,6 +82,7 @@ function Navbar() {
 
           <div className="flex items-center gap-4">
             <Button
+              onClick={() => navigate("/login")}
               className="hidden sm:block w-[120px] h-[35px] hover:bg-[#40a9ff] hover:border-[#40a9ff] transition-colors"
               type="primary"
             >
