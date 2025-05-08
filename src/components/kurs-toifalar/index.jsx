@@ -11,7 +11,7 @@ function KursToifalariComponents() {
           <h2 className="text-[28px] font-bold">
             Kurslar <span className="text-blue-600">Toifalari</span>
           </h2>
-          <div className="flex items-center gap-5 flex-wrap ">
+          <div className="flex items-center gap-5 flex-wrap max-[440px]:grid max-[440px]:grid-cols-2">
             <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
               <h4>Front-ENd </h4>
             </div>
