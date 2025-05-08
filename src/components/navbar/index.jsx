@@ -42,7 +42,7 @@ function Navbar() {
           localStorage.removeItem("token");
           localStorage.removeItem("balance");
           localStorage.removeItem("phone");
-          navigate("/login");
+          navigate("/");
         }}
       >
         Chiqish
