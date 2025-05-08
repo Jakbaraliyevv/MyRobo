@@ -3,6 +3,9 @@ import Home from "../pages/home";
 import Kurslar from "../pages/kurslar";
 import Blog from "../pages/blog";
 import Layout from "../components/layout";
+import BlogComponentsId from "../components/blog2";
+import KirishComponentsID from "../components/kirish2";
+import LoginPage from "../components/login";
 
 const root = createBrowserRouter([
   {
@@ -10,7 +13,7 @@ const root = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        index: true, // bu "/"
+        index: true,
         element: <Home />,
       },
       {
@@ -20,6 +23,18 @@ const root = createBrowserRouter([
       {
         path: "blog",
         element: <Blog />,
+      },
+      {
+        path: "blog2",
+        element: <BlogComponentsId />,
+      },
+      {
+        path: "kirish2",
+        element: <KirishComponentsID />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
       },
     ],
   },
