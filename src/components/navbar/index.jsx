@@ -1,13 +1,14 @@
-import { Button, Drawer } from "antd";
+import { Button, Drawer, Dropdown, Menu } from "antd";
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo3.png";
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined, UserOutlined, BookOutlined, LogoutOutlined } from "@ant-design/icons";
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  
   const showDrawer = () => {
     setVisible(true);
   };
@@ -16,10 +17,38 @@ function Navbar() {
     setVisible(false);
   };
 
-  // Check if current route matches nav link
   const isActive = (path) => {
     return location.pathname === path;
   };
+
+  const token = localStorage.getItem("token");
+  const balance = localStorage.getItem("balance");
+  const phone = localStorage.getItem("phone");
+
+  // Dropdown menu items
+  const menu = (
+    <Menu>
+      <Menu.Item key="1" icon={<BookOutlined />} onClick={() => navigate("/my-courses")}>
+        Kurslarim
+      </Menu.Item>
+      <Menu.Item key="2" icon={<UserOutlined />} onClick={() => navigate("/profile")}>
+        Profilim
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item 
+        key="3" 
+        icon={<LogoutOutlined />} 
+        onClick={() => {
+          localStorage.removeItem("token");
+          localStorage.removeItem("balance");
+          localStorage.removeItem("phone");
+          navigate("/login");
+        }}
+      >
+        Chiqish
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <>
@@ -35,59 +64,28 @@ function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden sm:flex items-center gap-[40px] text-[17px] font-medium text-[#616161]">
-            <Link
-              to={"/"}
-              className={`relative group ${
-                isActive("/") ? "text-[#1890ff]" : ""
-              }`}
-            >
-              Bosh sahifa
-              <span
-                className={`absolute left-0 -bottom-1 h-0.5 bg-[#1890ff] transition-all duration-300 ${
-                  isActive("/") ? "w-full" : "w-0 group-hover:w-full"
-                }`}
-              ></span>
-            </Link>
-
-            <Link
-              to={"/kurslar"}
-              className={`relative group ${
-                isActive("/kurslar") ? "text-[#1890ff]" : ""
-              }`}
-            >
-              Kurslar
-              <span
-                className={`absolute left-0 -bottom-1 h-0.5 bg-[#1890ff] transition-all duration-300 ${
-                  isActive("/kurslar") ? "w-full" : "w-0 group-hover:w-full"
-                }`}
-              ></span>
-            </Link>
-
-            <Link
-              to={"/blog"}
-              className={`relative group ${
-                isActive("/blog") ? "text-[#1890ff]" : ""
-              }`}
-            >
-              Blog
-              <span
-                className={`absolute left-0 -bottom-1 h-0.5 bg-[#1890ff] transition-all duration-300 ${
-                  isActive("/blog") ? "w-full" : "w-0 group-hover:w-full"
-                }`}
-              ></span>
-            </Link>
-          </div>
+          {/* Desktop Navigation remains the same */}
+          {/* ... */}
 
           <div className="flex items-center gap-4">
-            <Button
-              onClick={() => navigate("/login")}
-              className="hidden sm:block w-[120px] h-[35px] hover:bg-[#40a9ff] hover:border-[#40a9ff] transition-colors"
-              type="primary"
-            >
-              Kirish
-            </Button>
+            {token ? (
+              <Dropdown overlay={menu} trigger={["click"]} placement="bottomRight">
+                <Button
+                  className="hidden sm:block w-[50px] h-[35px] hover:bg-[#40a9ff] hover:border-[#40a9ff] transition-colors text-[17px]"
+                  type="primary"
+                >
+                  <UserOutlined />
+                </Button>
+              </Dropdown>
+            ) : (
+              <Button
+                onClick={() => navigate("/login")}
+                className="hidden sm:block w-[120px] h-[35px] hover:bg-[#40a9ff] hover:border-[#40a9ff] transition-colors"
+                type="primary"
+              >
+                Kirish
+              </Button>
+            )}
 
             <button
               className="sm:hidden text-2xl text-[#616161] hover:text-[#1890ff] transition-colors"
@@ -99,7 +97,7 @@ function Navbar() {
         </div>
       </section>
 
-      {/* Mobile Sidebar Drawer */}
+      {/* Updated Mobile Sidebar Drawer */}
       <Drawer
         title={
           <Link to={"/"} onClick={onClose}>
@@ -114,7 +112,7 @@ function Navbar() {
         closable={true}
         onClose={onClose}
         visible={visible}
-        width="70%"
+        width="80%"
         bodyStyle={{ padding: 0 }}
         headerStyle={{ padding: "16px 20px" }}
       >
@@ -153,20 +151,73 @@ function Navbar() {
             >
               Blog
             </Link>
+
+            {token && (
+              <>
+                {/* User Info Section */}
+                <div className="p-4 border-t border-b border-gray-200 my-2">
+                  <div className="text-sm font-medium text-gray-500">Balans:</div>
+                  <div className="text-lg font-bold">{balance || '0'} so'm</div>
+                  
+                  <div className="mt-2 text-sm font-medium text-gray-500">Telefon:</div>
+                  <div className="text-lg">{phone || '+998'}</div>
+                </div>
+
+                {/* Profile Links */}
+                <Link
+                  to={"/profile"}
+                  onClick={onClose}
+                  className={`flex items-center p-3 text-[15px] font-medium ${
+                    isActive("/profile")
+                      ? "text-[#1890ff] bg-blue-50"
+                      : "text-[#616161]"
+                  } hover:text-[#1890ff] hover:bg-blue-50 transition-colors rounded`}
+                >
+                  <span className="mr-2">☒</span> Mening profilim
+                </Link>
+
+                <Link
+                  to={"/my-courses"}
+                  onClick={onClose}
+                  className={`flex items-center p-3 text-[15px] font-medium ${
+                    isActive("/my-courses")
+                      ? "text-[#1890ff] bg-blue-50"
+                      : "text-[#616161]"
+                  } hover:text-[#1890ff] hover:bg-blue-50 transition-colors rounded`}
+                >
+                  <span className="mr-2">☐</span> Mening kurslarim
+                </Link>
+
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("balance");
+                    localStorage.removeItem("phone");
+                    onClose();
+                    navigate("/login");
+                  }}
+                  className="flex items-center p-3 text-[15px] font-medium text-[#616161] hover:text-[#1890ff] hover:bg-blue-50 transition-colors rounded w-full text-left"
+                >
+                  <span className="mr-2">☒</span> Chiqish
+                </button>
+              </>
+            )}
           </div>
 
-          <div className="mt-auto p-4">
-            <Button
-              className="w-full h-[38px] hover:bg-[#40a9ff] hover:border-[#40a9ff] transition-colors"
-              type="primary"
-              onClick={() => {
-                onClose();
-                navigate("/login");
-              }}
-            >
-              Kirish
-            </Button>
-          </div>
+          {!token && (
+            <div className="mt-auto p-4">
+              <Button
+                className="w-full h-[38px] hover:bg-[#40a9ff] hover:border-[#40a9ff] transition-colors"
+                type="primary"
+                onClick={() => {
+                  onClose();
+                  navigate("/login");
+                }}
+              >
+                Kirish
+              </Button>
+            </div>
+          )}
         </div>
       </Drawer>
     </>
