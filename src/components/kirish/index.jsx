@@ -24,30 +24,6 @@ function KirishComponents() {
       description:
         "1. Frontend Nima? Frontend – bu foydalanuvchilar ko'radigan va ulanish imkoniyatiga ega bo'lgan veb-sahifa yoki ilova qismi.",
     },
-    {
-      title: "Front-End Dasturlashga kirish",
-      price: "275000 so'm",
-      students: "0 O'quvchilar",
-      lessons: "3 Darsliklar",
-      description:
-        "1. Frontend Nima? Frontend – bu foydalanuvchilar ko'radigan va ulanish imkoniyatiga ega bo'lgan veb-sahifa yoki ilova qismi.",
-    },
-    {
-      title: "Front-End Dasturlashga kirish",
-      price: "275000 so'm",
-      students: "0 O'quvchilar",
-      lessons: "3 Darsliklar",
-      description:
-        "1. Frontend Nima? Frontend – bu foydalanuvchilar ko'radigan va ulanish imkoniyatiga ega bo'lgan veb-sahifa yoki ilova qismi.",
-    },
-    {
-      title: "Front-End Dasturlashga kirish",
-      price: "275000 so'm",
-      students: "0 O'quvchilar",
-      lessons: "3 Darsliklar",
-      description:
-        "1. Frontend Nima? Frontend – bu foydalanuvchilar ko'radigan va ulanish imkoniyatiga ega bo'lgan veb-sahifa yoki ilova qismi.",
-    },
   ];
 
   return (
