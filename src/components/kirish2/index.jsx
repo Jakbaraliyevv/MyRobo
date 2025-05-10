@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 
-import {
-  CheckOutlined, // Lucide: Check
-  CodeOutlined, // Lucide: Code
-  CopyOutlined, // Lucide: Copy
-} from "@ant-design/icons";
+import { CheckOutlined, CodeOutlined, CopyOutlined } from "@ant-design/icons";
+import { useData } from "../../datacontect";
+import { useLocation } from "react-router-dom";
 function KirishComponentsID() {
   const [showFrontendCode, setShowFrontendCode] = useState(false);
   const [showHTMLCode, setShowHTMLCode] = useState(false);
   const [showCSSCode, setShowCSSCode] = useState(false);
+  const { data } = useData();
+  const location = useLocation();
+  const { id } = location?.state;
+  console.log(data, id, "njdsbhbehc");
+
+  const findData = data.find((item) => item?.id === id);
+
+  // console.log(findData, "sxjhwxuy");
+
   const [copied, setCopied] = useState({
     frontend: false,
     html: false,
@@ -33,7 +40,6 @@ function KirishComponentsID() {
     }, 2000);
   };
 
-  // Kodlar
   const frontendCode = `// Frontend asoslari
 function nima() {
   console.log("Frontend - bu foydalanuvchilar ko'radigan va ulanish imkoniyatiga ega bo'lgan veb-sahifa qismi");
@@ -135,174 +141,43 @@ h2 { font-size: 1.5rem; margin-bottom: 1rem; }
     <div className="bg-gray-100 min-h-screen font-sans">
       <div className="w-[90%] m-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Chap taraf (Kurs ma'lumotlari) - 2/3 */}
           <div className="lg:col-span-2 space-y-6">
             <h1 className="text-2xl md:text-3xl font-semibold">
-              Kurs O'qtuvchisi{" "}
-              <span className="text-blue-600">Madaminov Salohiddin</span>
+              Kurs O'qtuvchisi
+              <span className="text-blue-600">
+                {findData?.teacher?.username}
+              </span>
             </h1>
 
-            {/* Kurs tavsifi rasmi */}
             <div className="bg-orange-200 rounded-lg overflow-hidden p-6 md:p-10 shadow-lg">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfWn4Xur5hIZuVl7orizHlvqj9OQuNDjxf8Q&s"
-                alt="Frontend kurs tasviri"
+                src={findData?.img}
                 className="w-full object-contain mx-auto"
+                alt="This is image"
               />
             </div>
 
-            {/* Tavsif */}
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h2 className="text-xl font-semibold mb-4">Tavsif</h2>
               <div className="text-gray-700 space-y-4">
-                <p>
-                  <span className="font-medium">1. Frontend Nima?</span>{" "}
-                  Frontend – bu foydalanuvchilar ko'radigan va ulanish
-                  imkoniyatiga ega bo'lgan veb-sahifa yoki ilova qismi. Oddiy
-                  qilib aytganda, frontend - bu saytning vizual ko'rinishi va
-                  foydalanuvchi bilan o'zaro aloqasi.
-                </p>
-
-                <p>
-                  <span className="font-medium">Frontend va Backend farqi</span>
-                  <br />
-                  Frontend – brauzerda ishlaydigan kod (HTML, CSS, JavaScript).
-                  <br />
-                  Backend – server tomonida ishlaydigan kod (Python, Django,
-                  Node.js, PHP va h.k.).
-                </p>
-
-                <p>
-                  <span className="font-medium">
-                    2. Frontend Uchun Texnologiyalar
-                  </span>
-                  <br />
-                  Frontend dasturchi bo'lish uchun quyidagi texnologiyalarni
-                  bilish kerak:
-                  <ul className="ml-6 mt-2 list-disc">
-                    <li>HTML – Veb-sahifaning strukturasi</li>
-                    <li>CSS – Sahifaning dizayni va joylashuvi</li>
-                    <li>JavaScript – Sahifaning interaktivligi</li>
-                  </ul>
-                </p>
-
-                <p>
-                  <span className="font-medium">
-                    3. Brauzer qanday ishlaydi?
-                  </span>
-                  <br />
-                  Brauzer veb-sahifani yuklaganda quyidagi bosqichlarni
-                  bajaradi:
-                  <ul className="ml-6 mt-2 list-disc">
-                    <li>URL kiritiladi → Brauzer serverga so'rov yuboradi.</li>
-                    <li>
-                      Server javob qaytaradi → HTML, CSS va JavaScript fayllar
-                      yuklanadi.
-                    </li>
-                    <li>
-                      Brauzer fayllarni tahlil qiladi → HTML struktura hosil
-                      qiladi (DOM), CSS bilan bezatadi va JavaScript orqali
-                      interaktiv qiladi.
-                    </li>
-                    <li>Sahifa ekranda ko'rinadi.</li>
-                  </ul>
-                </p>
-
-                <p>
-                  <span className="font-medium">
-                    4. Frontendni Ishga Tushirish
-                  </span>
-                  <br />
-                  Frontend kod yozish va test qilish uchun kerak bo'ladigan
-                  vositalar:
-                  <ul className="ml-6 mt-2 list-disc">
-                    <li>Kod muharriri: VS Code, Sublime Text</li>
-                    <li>Brauzer: Google Chrome, Firefox</li>
-                    <li>
-                      Developer Tools: Brauzerning ichki dasturchi asboblari
-                      (F12)
-                    </li>
-                    <li>Version Control: Git va GitHub</li>
-                  </ul>
-                </p>
+                <p>{findData?.description}</p>
               </div>
             </div>
 
-            {/* Nimalarga ega bo'lasiz */}
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h2 className="text-xl font-semibold mb-4">
                 Kurs davomida nimalarga ega bo'lasiz
               </h2>
               <div className="space-y-3">
-                <div className="flex items-start">
-                  <CheckOutlined
-                    className="text-green-500 mr-2 mt-1 flex-shrink-0"
-                    size={18}
-                  />
-                  <p className="text-gray-700">
-                    <span className="font-medium">Dasturchi bo'lish</span> –
-                    Frontend dasturchi sifatida IT sohasida ishlash va yaxshi
-                    daromad topish.
-                  </p>
-                </div>
-
-                <div className="flex items-start">
-                  <CheckOutlined
-                    className="text-green-500 mr-2 mt-1 flex-shrink-0"
-                    size={18}
-                  />
-                  <p className="text-gray-700">
-                    <span className="font-medium">Freelancer bo'lish</span> –
-                    Mustaqil ishlash, turli buyurtmalar bajarish va chet ellik
-                    mijozlar bilan ishlash.
-                  </p>
-                </div>
-
-                <div className="flex items-start">
-                  <CheckOutlined
-                    className="text-green-500 mr-2 mt-1 flex-shrink-0"
-                    size={18}
-                  />
-                  <p className="text-gray-700">
-                    <span className="font-medium">
-                      Startap yoki biznes boshlash
-                    </span>{" "}
-                    – O'z veb-sayt va ilovalaringizni yaratish.
-                  </p>
-                </div>
-
-                <div className="flex items-start">
-                  <CheckOutlined
-                    className="text-green-500 mr-2 mt-1 flex-shrink-0"
-                    size={18}
-                  />
-                  <p className="text-gray-700">
-                    <span className="font-medium">O'qituvchi bo'lish</span> –
-                    Frontend dasturlashni o'rgatib, kurslar yoki darslar o'tish.
-                  </p>
-                </div>
-
-                <div className="flex items-start">
-                  <CheckOutlined
-                    className="text-green-500 mr-2 mt-1 flex-shrink-0"
-                    size={18}
-                  />
-                  <p className="text-gray-700">
-                    <span className="font-medium">Junior Developer</span>{" "}
-                    (Boshlang'ich daraja): 200$ - 800$ / oy
-                  </p>
-                </div>
-
-                <div className="flex items-start">
-                  <CheckOutlined
-                    className="text-green-500 mr-2 mt-1 flex-shrink-0"
-                    size={18}
-                  />
-                  <p className="text-gray-700">
-                    <span className="font-medium">Middle Developer</span> (O'rta
-                    daraja): 800$ - 2000$ / oy
-                  </p>
-                </div>
+                {findData?.course_accept?.map((value) => (
+                  <div key={value?.id} className="flex items-start">
+                    <CheckOutlined
+                      className="text-green-500 mr-2 mt-1 flex-shrink-0"
+                      size={18}
+                    />
+                    <p className="text-gray-700">{value?.name}</p>
+                  </div>
+                ))}
 
                 <div className="flex items-start">
                   <CheckOutlined
@@ -314,7 +189,6 @@ h2 { font-size: 1.5rem; margin-bottom: 1rem; }
               </div>
             </div>
 
-            {/* Dasturlash texnologiyalari */}
             <div className="space-y-4">
               <div className="bg-blue-900 text-white p-4 rounded-t-lg">
                 <h3 className="font-medium">Frontend Nima</h3>
@@ -472,27 +346,27 @@ h2 { font-size: 1.5rem; margin-bottom: 1rem; }
             </div>
           </div>
 
-          {/* O'ng taraf (Mentor ma'lumotlari) - 1/3 */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md overflow-hidden sticky top-4">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPUL3pET-BblsLO62pglbzbKsVji5_2ysBng&s"
-                alt="Mentor rasmi"
+                src={findData?.teacher?.img}
                 className="w-full h-64 object-cover"
               />
 
               <div className="p-6">
                 <h2 className="text-xl font-semibold mb-2">
-                  Frontend Dasturlashga Kirish
+                  {findData?.title}
                 </h2>
                 <p className="text-gray-500 text-sm mb-4">
-                  Mentor: Madaminov Salohiddin
+                  Mentor: <span>{findData?.teacher?.username}</span>
                 </p>
 
                 <div className="border-t border-b py-4 my-4">
                   <p className="text-sm text-gray-500">Kurs narxi:</p>
                   <div className="flex items-center mt-1">
-                    <span className="text-xl font-bold">275000 so'm</span>
+                    <span className="text-xl font-bold">
+                      {findData?.price} so'm
+                    </span>
                     <span className="text-gray-400 line-through ml-2 text-sm">
                       300000 so'm
                     </span>

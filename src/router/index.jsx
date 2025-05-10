@@ -6,6 +6,7 @@ import Layout from "../components/layout";
 import BlogComponentsId from "../components/blog2";
 import KirishComponentsID from "../components/kirish2";
 import LoginPage from "../components/login";
+import FrontendProfile from "../components/frontned";
 
 const root = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const root = createBrowserRouter([
       {
         path: "login",
         element: <LoginPage />,
+      },
+      {
+        path: "frontned",
+        element: <FrontendProfile />,
       },
     ],
   },
