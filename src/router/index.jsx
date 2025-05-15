@@ -12,6 +12,7 @@ import Check from "../components/check";
 import Profilim from "../components/profilim";
 import MeningKurslarim from "../components/my-courses";
 import Sertificatlarim from "../components/sertificatlarim";
+import NotFound from "../components/not-found";
 
 const root = createBrowserRouter([
   {
@@ -68,6 +69,11 @@ const root = createBrowserRouter([
         element: <Sertificatlarim />,
       },
     ],
+  },
+
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
