@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import { useAxios } from "../../hooks";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useData } from "../../datacontect";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,7 @@ function TeamComponents() {
   const axios = useAxios();
   const navigate = useNavigate();
   const { teacherData, setTeacherData } = useData();
+
   useEffect(() => {
     axios({
       url: "/api/teacher/",
@@ -15,7 +16,7 @@ function TeamComponents() {
     })
       .then((data) => setTeacherData(data))
       .catch((error) => console.log(error));
-  }, []);
+  }, [axios, setTeacherData]);
 
   const url = "https://api.myrobo.uz";
 
@@ -24,46 +25,49 @@ function TeamComponents() {
   };
 
   return (
-    <section className="w-[90%] m-auto mt-[140px] mb-11 flex items-center justify-center max-[768px]:mt-[80px]  max-[568px]:mt-[40px]">
-      <div className=" flex flex-col gap-[60px] items-center justify-center  max-[768px]:gap-[35px]">
-        <h1 className="text-[35px] font-bold max-[632px]:text-[29px] max-[525px]:text-[24px] max-[436px]:text-[21px]">
-          Professional <span className="text-blue-600"> o'qtuvchilar </span>
+    <section className="w-[90%] mx-auto mt-[140px] mb-11 max-w-[1200px] max-[768px]:mt-[80px] max-[568px]:mt-[40px]">
+      <div className="flex flex-col gap-[60px] items-center max-[768px]:gap-[35px]">
+        <h1 className="text-[35px] font-bold text-center max-[768px]:text-[29px] max-[640px]:text-[24px] max-[480px]:text-[21px]">
+          Professional <span className="text-blue-600">o'qtuvchilar</span>{" "}
           jamoasi
         </h1>
-        <div className="flex items-center justify-center w-full">
-          {teacherData?.map((value) => (
-            <div
-              onClick={() => postID(value?.slug)}
-              className="flex items-center w-full justify-center gap-[40px] min-[768px]:flex-wrap max-[740px]:grid max-[740px]:grid-cols-2 max-[540px]:grid-cols-1"
-            >
-              <div className="border-[1px] w-[310px] p-[25px] rounded-lg max-[740px]:w-full ">
-                <div>
+
+        <div className="w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+            {teacherData?.map((value) => (
+              <div
+                key={value.slug}
+                onClick={() => postID(value?.slug)}
+                className="border border-gray-200 w-full max-w-[310px] p-6 rounded-lg hover:shadow-lg transition-shadow cursor-pointer"
+              >
+                <div className="overflow-hidden rounded-lg">
                   <img
-                    className="w-full h-[280px] object-cover rounded-lg"
+                    className="w-full h-[280px] object-cover hover:scale-105 transition-transform"
                     src={`${url}/${value?.img}`}
-                    alt=""
+                    alt={value?.username}
+                    loading="lazy"
                   />
                 </div>
-                <div className="flex items-center justify-center flex-col gap-[40px] pt-[20px]  max-[768px]:gap-[30px]  max-[568px]:mt-[15px]">
-                  <h2 className="text-[22px] font-bold  max-[568px]:text-[19px]">
+                <div className="flex flex-col items-center gap-4 pt-5">
+                  <h2 className="text-[22px] font-bold text-center max-[568px]:text-[19px]">
                     {value?.username}
                   </h2>
-                  <div className="flex flex-col gap-[20px]">
-                    <div className="flex items-center justify-between gap-3">
-                      <p className="text-[17px] text-gray-500  max-[568px]:text-[15px]">
-                        <span className="font-medium text-black ">17</span>{" "}
+                  <div className="w-full flex flex-col gap-4">
+                    <div className="flex justify-between gap-3">
+                      <p className="text-gray-500">
+                        <span className="font-medium text-black">17</span>{" "}
                         Student
                       </p>
-                      <p className="text-[17px] text-gray-500 max-[568px]:text-[15px]">
+                      <p className="text-gray-500">
                         <span className="font-medium text-black">0</span> Course
                       </p>
                     </div>
-                    <Button>Batafsil ko'rish</Button>
+                    <Button className="w-full">Batafsil ko'rish</Button>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
