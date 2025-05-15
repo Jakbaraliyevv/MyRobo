@@ -21,11 +21,18 @@ function KirishComponents() {
 
   const token = localStorage.getItem("token");
   const postId = (id) => {
-    if (token === "") {
+    if (token) {
       navigate(`/kirish2/`, { state: { id: id } });
     } else {
-      navigate(`/frontned/`, { state: { id: id } });
+      navigate(`/kirish2/`, { state: { id: id } });
     }
+  };
+
+  const truncateDescription2 = (text, limit = 27) => {
+    const words = text.split(" ");
+    return (
+      words.slice(0, limit).join(" ") + (words.length > limit ? "..." : "")
+    );
   };
 
   return (
@@ -117,7 +124,7 @@ function KirishComponents() {
                       ></path>
                     </svg>
                     <p>
-                      <span>{value?.lesson_base_name}</span> Darsliklar
+                      <span>{0}</span> Darsliklar
                     </p>
                   </span>
                 </div>
@@ -138,7 +145,9 @@ function KirishComponents() {
                     </h3>
                   </div>
                   <div className="flex-1 overflow-y-auto">
-                    <p className="text-gray-700 mb-4">{value?.description}</p>
+                    <p className="text-gray-700 mb-4">
+                      {truncateDescription2(value?.description)}
+                    </p>
                     <div className="flex justify-between text-sm text-gray-500 mb-6">
                       <span className="flex items-center gap-2">
                         <svg
@@ -201,7 +210,7 @@ function KirishComponents() {
                           ></path>
                         </svg>
                         <p>
-                          <span>{value?.lesson_base_name}</span>
+                          <span>{0} </span>
                           Darsliklar
                         </p>
                       </span>

@@ -7,6 +7,8 @@ import BlogComponentsId from "../components/blog2";
 import KirishComponentsID from "../components/kirish2";
 import LoginPage from "../components/login";
 import FrontendProfile from "../components/frontned";
+import Team2 from "../components/team2";
+import Check from "../components/check";
 
 const root = createBrowserRouter([
   {
@@ -26,8 +28,13 @@ const root = createBrowserRouter([
         element: <Blog />,
       },
       {
-        path: "blog2",
+        path: "blog/:slug",
         element: <BlogComponentsId />,
+      },
+
+      {
+        path: "team2",
+        element: <Team2 />,
       },
       {
         path: "kirish2",
@@ -40,6 +47,10 @@ const root = createBrowserRouter([
       {
         path: "frontned",
         element: <FrontendProfile />,
+      },
+      {
+        path: "check",
+        element: <Check />,
       },
     ],
   },

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { CheckOutlined, CodeOutlined, CopyOutlined } from "@ant-design/icons";
 import { useData } from "../../datacontect";
 import { useLocation } from "react-router-dom";
+import { useAxios } from "../../hooks";
+import notificationApi from "../../generic/notificition";
 function KirishComponentsID() {
   const [showFrontendCode, setShowFrontendCode] = useState(false);
   const [showHTMLCode, setShowHTMLCode] = useState(false);
@@ -10,18 +12,16 @@ function KirishComponentsID() {
   const { data } = useData();
   const location = useLocation();
   const { id } = location?.state;
-  console.log(data, id, "njdsbhbehc");
-
+  const axios = useAxios();
   const findData = data.find((item) => item?.id === id);
-
-  // console.log(findData, "sxjhwxuy");
-
+  const notify = notificationApi();
   const [copied, setCopied] = useState({
     frontend: false,
     html: false,
     css: false,
   });
 
+  const url = "https://api.myrobo.uz";
   const handleCopy = (type) => {
     let codeToCopy = "";
 
@@ -39,6 +39,34 @@ function KirishComponentsID() {
       setCopied({ ...copied, [type]: false });
     }, 2000);
   };
+
+  // Kurs sotib olish
+
+  const token = localStorage.getItem("token");
+  const buyCourse = (id) => {
+    if (!token) {
+      notify({ type: "token" });
+      return;
+    }
+    axios({
+      url: "/api/purchased-courses/",
+      method: "POST",
+      data: {
+        course_id: id,
+      },
+    })
+      .then((data) => {
+        console.log(data);
+        if (data?.message === "You have already purchased this course") {
+          notify({ type: "buyCourses" });
+        } else {
+          notify({ type: "success" });
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  console.log(findData, "xnsj");
 
   const frontendCode = `// Frontend asoslari
 function nima() {
@@ -349,7 +377,7 @@ h2 { font-size: 1.5rem; margin-bottom: 1rem; }
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md overflow-hidden sticky top-4">
               <img
-                src={findData?.teacher?.img}
+                src={`${url}/${findData?.teacher?.img}`}
                 className="w-full h-64 object-cover"
               />
 
@@ -373,7 +401,10 @@ h2 { font-size: 1.5rem; margin-bottom: 1rem; }
                   </div>
                 </div>
 
-                <button className="bg-blue-600 hover:bg-blue-700 text-white rounded-md w-full py-3 font-medium transition duration-300 shadow-md">
+                <button
+                  onClick={() => buyCourse(findData?.id)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white rounded-md w-full py-3 font-medium transition duration-300 shadow-md"
+                >
                   Sotib olish
                 </button>
 

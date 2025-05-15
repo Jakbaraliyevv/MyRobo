@@ -1,6 +1,19 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useAxios } from "../../hooks";
 
 function KursToifalariComponents() {
+  const axios = useAxios();
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios({
+      url: "/api/categories/",
+      method: "GET",
+    })
+      .then((data) => setData(data))
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <section className="bg-[#f1f2f7] py-[40px] mt-[60px] bgnone">
       <div className="w-[90%] m-auto">
@@ -12,36 +25,14 @@ function KursToifalariComponents() {
             Kurslar <span className="text-blue-600">Toifalari</span>
           </h2>
           <div className="flex items-center gap-5 flex-wrap max-[440px]:grid max-[440px]:grid-cols-2">
-            <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
-              <h4>Front-ENd </h4>
-            </div>
-            <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
-              <h4>Front-ENd </h4>
-            </div>
-            <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
-              <h4>Front-ENd </h4>
-            </div>
-            <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
-              <h4>Front-ENd </h4>
-            </div>
-            <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
-              <h4>Front-ENd </h4>
-            </div>
-            <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
-              <h4>Front-ENd </h4>
-            </div>
-            <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
-              <h4>Front-ENd </h4>
-            </div>
-            <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
-              <h4>Front-ENd </h4>
-            </div>
-            <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
-              <h4>Front-ENd </h4>
-            </div>
-            <div className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300">
-              <h4>Front-ENd </h4>
-            </div>
+            {data?.map((value) => (
+              <div
+                key={value?.id}
+                className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300"
+              >
+                <h4>{value?.name} </h4>
+              </div>
+            ))}
           </div>
         </div>
       </div>
