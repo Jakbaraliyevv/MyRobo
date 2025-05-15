@@ -21,10 +21,16 @@ function KirishComponents() {
 
   const token = localStorage.getItem("token");
   const postId = (id) => {
-    if (token) {
+    const chioseData = data.find((item) => item?.id === id);
+
+    if (!token && chioseData?.paid === false) {
+      navigate(`/kirish2/`, { state: { id: id } });
+    } else if (token && chioseData?.paid === false) {
+      navigate(`/kirish2/`, { state: { id: id } });
+    } else if (!token && chioseData?.paid === true) {
       navigate(`/kirish2/`, { state: { id: id } });
     } else {
-      navigate(`/kirish2/`, { state: { id: id } });
+      navigate(`/frontned/`, { state: { id: id } });
     }
   };
 

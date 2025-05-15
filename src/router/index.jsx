@@ -9,6 +9,9 @@ import LoginPage from "../components/login";
 import FrontendProfile from "../components/frontned";
 import Team2 from "../components/team2";
 import Check from "../components/check";
+import Profilim from "../components/profilim";
+import MeningKurslarim from "../components/my-courses";
+import Sertificatlarim from "../components/sertificatlarim";
 
 const root = createBrowserRouter([
   {
@@ -51,6 +54,18 @@ const root = createBrowserRouter([
       {
         path: "check",
         element: <Check />,
+      },
+      {
+        path: "profilim",
+        element: <Profilim />,
+      },
+      {
+        path: "my-courses",
+        element: <MeningKurslarim />,
+      },
+      {
+        path: "sertificatlarim",
+        element: <Sertificatlarim />,
       },
     ],
   },

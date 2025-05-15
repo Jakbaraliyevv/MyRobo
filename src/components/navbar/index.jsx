@@ -233,7 +233,7 @@ function Navbar() {
       <Menu.Item
         key="2"
         icon={<UserOutlined />}
-        onClick={() => navigate("/profile")}
+        onClick={() => navigate("/profilim")}
       >
         Profilim
       </Menu.Item>
@@ -380,7 +380,6 @@ function Navbar() {
             >
               Bosh sahifa
             </Link>
-
             <Link
               to="/kurslar"
               onClick={onClose}
@@ -418,12 +417,11 @@ function Navbar() {
                   <div className="text-lg">{phone}</div>
                 </div>
 
-                {/* Profile Links */}
                 <Link
-                  to="/profile"
+                  to="/profilim"
                   onClick={onClose}
                   className={`flex items-center p-3 text-[15px] font-medium ${
-                    isActive("/profile")
+                    isActive("/profilim")
                       ? "text-blue-500 bg-blue-50"
                       : "text-gray-600"
                   } hover:text-blue-500 hover:bg-blue-50 transition-colors rounded`}

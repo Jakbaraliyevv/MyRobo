@@ -11,9 +11,14 @@ const notificationApi = () => {
         return notification.success({
           message: "Course purchased successfully!",
         });
+
       case "token":
         return notification.error({
           message: "Ro'yhatdan o'ting",
+        });
+      case "loginSuccses":
+        return notification.success({
+          message: "Tizimga kirdingiz",
         });
       default:
         return notification.info({

@@ -24,13 +24,14 @@ function KursToifalariComponents() {
           <h2 className="text-[28px] font-bold">
             Kurslar <span className="text-blue-600">Toifalari</span>
           </h2>
-          <div className="flex items-center gap-5 flex-wrap max-[440px]:grid max-[440px]:grid-cols-2">
+          <div className="flex items-center gap-5 flex-wrap max-[440px]:grid max-[440px]:grid-cols-2 max-[440px]:gap-3 max-[440px]:w-full">
             {data?.map((value) => (
               <div
                 key={value?.id}
-                className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300"
+                className="w-fit p-3 bg-[#fff] text-[17px] text-[#333] rounded-md shadow-md shadow-blue-300 
+                max-[440px]:w-full max-[440px]:text-center"
               >
-                <h4>{value?.name} </h4>
+                <h4>{value?.name}</h4>
               </div>
             ))}
           </div>

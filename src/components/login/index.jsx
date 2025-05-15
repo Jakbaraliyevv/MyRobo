@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import Cookies from "js-cookie";
 import { UserOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { useAxios } from "../../hooks";
+import notificationApi from "../../generic/notificition";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const LoginPage = () => {
 
   const uuid = Cookies.get("my_uuid");
   const access = localStorage.getItem("token");
-
+  const notify = notificationApi();
   useEffect(() => {
     if (!uuid) {
       const newUUID = uuidv4();
@@ -25,7 +26,7 @@ const LoginPage = () => {
     }
   }, []);
 
-  useEffect(() => {  
+  useEffect(() => {
     if (access) {
       navigate("/");
     }
@@ -80,6 +81,9 @@ const LoginPage = () => {
     })
       .then((data) => {
         console.log(data);
+        if (data?.status === "success") {
+          notify({ type: "loginSuccses" });
+        }
         localStorage.setItem("token", data?.token);
         localStorage.setItem("balance", data?.user_balance);
         localStorage.setItem("phone", data?.phone);
