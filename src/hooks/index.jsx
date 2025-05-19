@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 
 // const token = localStorage.getItem("token");
 
@@ -30,7 +30,50 @@ import axios from "axios";
 //   return response;
 // };
 
-const token = localStorage.getItem("token");
+// const token = localStorage.getItem("token");
+
+// export const useAxios = () => {
+//   const response = async ({
+//     url,
+//     method = "GET",
+//     data,
+//     headers = {},
+//     params = {},
+//     auth = true,
+//   }) => {
+//     try {
+//       // Avval default headersni yarataylik
+//       const defaultHeaders = {
+//         "Content-Type": "application/json",
+//         ...headers,
+//       };
+
+//       if (auth && token) {
+//         defaultHeaders.Authorization = `token ${token}`;
+//       }
+
+//       const res = await axios({
+//         url: `${import.meta.env.VITE_BASE_URL}${url}`,
+//         method,
+//         data,
+//         headers: defaultHeaders,
+//         params: {
+//           ...(auth && token ? { access_token: token } : {}),
+//           ...params,
+//         },
+//       });
+
+//       return res.data;
+//     } catch (error) {
+//       console.error("Axios xatolik:", error);
+//       throw error;
+//     }
+//   };
+
+//   return response;
+// };
+
+import axios from "axios";
 
 export const useAxios = () => {
   const response = async ({
@@ -42,13 +85,13 @@ export const useAxios = () => {
     auth = true,
   }) => {
     try {
-      // Avval default headersni yarataylik
+      const token = localStorage.getItem("token");
+
       const defaultHeaders = {
         "Content-Type": "application/json",
         ...headers,
       };
 
-      // Faqat auth kerak bo'lsa va token mavjud bo'lsa Authorization qo'shamiz
       if (auth && token) {
         defaultHeaders.Authorization = `token ${token}`;
       }
@@ -58,10 +101,7 @@ export const useAxios = () => {
         method,
         data,
         headers: defaultHeaders,
-        params: {
-          ...(auth && token ? { access_token: token } : {}),
-          ...params,
-        },
+        params,
       });
 
       return res.data;

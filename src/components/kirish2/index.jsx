@@ -2,13 +2,10 @@ import { useState } from "react";
 
 import { CheckOutlined, CodeOutlined } from "@ant-design/icons";
 import { useData } from "../../datacontect";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAxios } from "../../hooks";
 import notificationApi from "../../generic/notificition";
 function KirishComponentsID() {
-  const [showFrontendCode, setShowFrontendCode] = useState(false);
-  const [showHTMLCode, setShowHTMLCode] = useState(false);
-  const [showCSSCode, setShowCSSCode] = useState(false);
   const { data } = useData();
   const location = useLocation();
   const { id } = location?.state;
@@ -16,6 +13,7 @@ function KirishComponentsID() {
   const findData = data.find((item) => item?.id === id);
   const notify = notificationApi();
 
+  const navigate = useNavigate();
   const url = "https://api.myrobo.uz";
 
   console.log(findData, "kndsyc");
@@ -34,12 +32,16 @@ function KirishComponentsID() {
       notify({ type: "token" });
       return;
     }
+
+    const data = {
+      course_id: id,
+    };
+
+    console.log(data, "lknjbhuyt");
     axios({
       url: "/api/purchased-courses/",
       method: "POST",
-      data: {
-        course_id: id,
-      },
+      data,
     })
       .then((data) => {
         console.log(data);
@@ -47,6 +49,7 @@ function KirishComponentsID() {
           notify({ type: "buyCourses" });
         } else {
           notify({ type: "success" });
+          navigate("/my-courses");
         }
       })
       .catch((error) => console.log(error));
@@ -120,8 +123,8 @@ function KirishComponentsID() {
                       {value?.title}
                     </p>
                     <button
+                      onClick={() => postData()}
                       className="flex items-center text-blue-500 text-sm mt-2 hover:text-blue-700"
-                      onClick={() => setShowHTMLCode(!showHTMLCode)}
                     >
                       <CodeOutlined size={16} className="mr-1" />
                       code print
